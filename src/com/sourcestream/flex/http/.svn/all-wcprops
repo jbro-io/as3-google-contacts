@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/123/trunk/src/com/sourcestream/flex/http
+END
+HttpResponse.as
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/139/trunk/src/com/sourcestream/flex/http/HttpResponse.as
+END
+RestHttpService.as
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/141/trunk/src/com/sourcestream/flex/http/RestHttpService.as
+END
+HttpEvent.as
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/139/trunk/src/com/sourcestream/flex/http/HttpEvent.as
+END
