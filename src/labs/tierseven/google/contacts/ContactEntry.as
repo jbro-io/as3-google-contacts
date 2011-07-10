@@ -5,24 +5,24 @@ package labs.tierseven.google.contacts
 	//  Imports
 	//
 	//--------------------------------------------------------------------------
-	import flash.events.Event;
+	import com.adobe.xml.syndication.ParsingTools;
+	import com.adobe.xml.syndication.atom.Entry;
+	
 	
 	/**
 	 * Description of this class.
 	 *
 	 * @author Jonathan Broquist
-	 * @modified Feb 26, 2010
+	 * @modified Mar 9, 2010
 	 */
-	public class ServiceResponse extends Event
+	public class ContactEntry extends Entry
 	{
 		//--------------------------------------------------------------------------
 		//
 		//  Variables
 		//
 		//--------------------------------------------------------------------------
-		public static const ALL_CONTACTS:String = "allContactsReceived";
-		
-		private var _contactData:Object;
+		private var gd:Namespace = new Namespace("http://schemas.google.com/g/2005");
 		
 		//--------------------------------------------------------------------------
 		//
@@ -30,31 +30,38 @@ package labs.tierseven.google.contacts
 		//
 		//--------------------------------------------------------------------------
 		/**
-		 * Constructor definition.
+		 * Constructor.
 		 */
-		public function ServiceResponse(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
+		public function ContactEntry(x:XMLList)
 		{
-			super(type, bubbles, cancelable);
+			super(x);
 		}
+		
+		//--------------------------------------------------------------------------
+		//
+		//  Methods
+		//
+		//--------------------------------------------------------------------------
+		
+		//--------------------------------------------------------------------------
+		//
+		//  Event Handlers
+		//
+		//--------------------------------------------------------------------------
 		
 		//--------------------------------------------------------------------------
 		//
 		//  Properties
 		//
 		//--------------------------------------------------------------------------
-		/**
-		 * contactData description here.
-		 * 
-		 * @public
-		 */
-		public function get contactData():Object
+		public function get phoneNumber():String
 		{
-			return _contactData;
+			return ParsingTools.nullCheck(this.x.gd::phoneNumber);
 		}
 		
-		public function set contactData(value:Object):void
+		public function get email():String
 		{
-			_contactData = value;
+			return ParsingTools.nullCheck(this.x.gd::email);
 		}
 	}
 }

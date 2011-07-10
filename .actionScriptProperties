@@ -10,6 +10,7 @@
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="3" linkType="1" path="/Users/jonathanbroquist/dev/Code Libraries/Actionscript 3/RestHttpService-0.9.10.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/Users/jonathanbroquist/dev/Code Libraries/Actionscript 3/xmlsyndication/bin/xmlsyndication.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

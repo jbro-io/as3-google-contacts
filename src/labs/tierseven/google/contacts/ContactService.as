@@ -5,6 +5,7 @@ package labs.tierseven.google.contacts
 	//  Imports
 	//
 	//--------------------------------------------------------------------------
+	import com.adobe.xml.syndication.atom.Atom10;
 	import com.sourcestream.flex.http.HttpEvent;
 	import com.sourcestream.flex.http.HttpResponse;
 	import com.sourcestream.flex.http.RestHttpService;
@@ -16,6 +17,7 @@ package labs.tierseven.google.contacts
 	import mx.collections.ArrayCollection;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
+	import mx.utils.ObjectUtil;
 	
 	//TODO Write class description.
 	/**
@@ -162,9 +164,7 @@ package labs.tierseven.google.contacts
 			var authToken:String = ev.body.split("Auth=")[1];
 			_serv.googleAuthToken = authToken;
 			
-			trace("GOOGLE AUTH TOKEN:", authToken);
-			
-			dispatchEvent(new Event("loginSuccess"));
+			dispatchEvent(new ContactServiceEvent(ContactServiceEvent.LOGIN_SUCCESS));
 		}
 		
 		/**
@@ -172,8 +172,14 @@ package labs.tierseven.google.contacts
 		 */
 		private function onGoogleContactsFeed(ev:HttpResponse):void
 		{
-			//output response
-			trace("CONTACTS FEED:\n" + XML(ev.body).toXMLString());
+			//parse returned atom feed
+			var feed:ContactFeed = new ContactFeed();
+			feed.parse(ev.body);
+			
+			//dispatch contacts reveived event
+			var cr:ContactServiceEvent = new ContactServiceEvent(ContactServiceEvent.CONTACTS_RECEIVED);
+			cr.feed = feed;
+			dispatchEvent(cr);
 		}
 		
 		//--------------------------------------------------------------------------

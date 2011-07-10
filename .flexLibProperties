@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
-  <includeClasses/>
+  <includeClasses>
+    <classEntry path="labs.tierseven.google.contacts.ContactEntry"/>
+    <classEntry path="labs.tierseven.google.contacts.ContactFeed"/>
+    <classEntry path="labs.tierseven.google.contacts.ContactServiceEvent"/>
+  </includeClasses>
   <includeResources/>
   <namespaceManifests/>
 </flexLibProperties>
