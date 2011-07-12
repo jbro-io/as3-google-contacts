@@ -8,6 +8,8 @@ package labs.tierseven.google.contacts
 	import com.adobe.xml.syndication.ParsingTools;
 	import com.adobe.xml.syndication.atom.Entry;
 	
+	import mx.collections.ArrayCollection;
+	
 	
 	/**
 	 * Description of this class.
@@ -61,7 +63,51 @@ package labs.tierseven.google.contacts
 		
 		public function get email():String
 		{
-			return ParsingTools.nullCheck(this.x.gd::email);
+			//instantiate return string
+			var rtrn:String = "";
+			
+			//retrieve xml email list
+			var emailList:XMLList = this.x.gd::email.@address;
+			
+			//check for multiple address
+			if(emailList.length() > 1)
+			{
+				//consolidate multiple addresses into single comma separated string
+				for(var i:int=0; i<emailList.length(); i++)
+				{
+					if(i != emailList.length()-1)
+						rtrn += emailList[i] + ", ";
+					else
+						rtrn += emailList[i];
+				}
+			}
+			else
+			{
+				rtrn = emailList.toString();
+			}
+			
+			return rtrn;
 		}
+		
+		/*public function get emails():ArrayCollection
+		{
+			//instantiate return array
+			var returnEmails:ArrayCollection = new ArrayCollection();;
+			
+			//retrieve xml email list
+			var emailList:XMLList = this.x.gd::email.@address;
+			
+			if(emailList.length() > 0)
+			{
+				//iterate email list
+				var totalEmails:int = emailList.length();
+				for(var i:int=0; i<totalEmails; i++)
+				{
+					returnEmails.addItem(emailList[i].toString());
+				}
+			}
+			
+			return returnEmails;
+		}*/
 	}
 }
